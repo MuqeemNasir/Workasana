@@ -99,4 +99,19 @@ const deleteTask = async (req, res, next) => {
     }
 }
 
-module.exports = { createTask, getAllTasks, updateTask, deleteTask }
+const getTaskById = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const task = await Task.findById(id).populate('project', 'name').populate('team', 'name').populate('owners', 'name email')
+
+        if(!task){
+            return res.status(404).json({message: 'Task not found.'})
+        }
+
+        res.status(200).json(task)
+    }catch(error){
+        next(error)
+    }
+}
+
+module.exports = { createTask, getAllTasks, updateTask, deleteTask, getTaskById }
