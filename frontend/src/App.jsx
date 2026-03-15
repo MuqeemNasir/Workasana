@@ -21,25 +21,12 @@ import Team from './pages/Team';
 import ProjectDetails from "./pages/ProjectDetails";
 import TaskDetails from "./pages/TaskDetails";
 import TeamDetails from "./pages/TeamDetails";
-
-// const Login = () => <h2 className='text-center mt-5'>Login Page</h2>
-// const Signup = () => <h2 className="text-center mt-5">Signup Page</h2>;
-// const Dashboard = () => {
-//   const {logout, user} = useAuthStore()
-//   return (
-//     <div className="text-center mt-5">
-//       <h1>Welcome, {user?.name}</h1>
-//       <button className="btn btn-danger mt-3" onClick={logout}>Logout</button>
-//     </div>
-//   )
-// };
-
+import Reports from "./pages/Reports";
 
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated } = useAuthStore()
   return isAuthenticated ? children : <Navigate to="/login" />
 }
-// const NotFound = () => <h2 className="text-center mt-5">404 Not Found</h2>;
 
 const ProtectedLayout = ({children}) => {
   return(
@@ -96,7 +83,7 @@ function App() {
         } />
         <Route path="/reports" element={
           <ProtectedLayout>
-            <div className="text-center mt-5">Reports Page Coming Soon</div>
+            <Reports />
           </ProtectedLayout>
         } />
       </Routes>
