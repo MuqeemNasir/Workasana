@@ -20,6 +20,7 @@ import Projects from './pages/Projects';
 import Team from './pages/Team';
 import ProjectDetails from "./pages/ProjectDetails";
 import TaskDetails from "./pages/TaskDetails";
+import TeamDetails from "./pages/TeamDetails";
 
 // const Login = () => <h2 className='text-center mt-5'>Login Page</h2>
 // const Signup = () => <h2 className="text-center mt-5">Signup Page</h2>;
@@ -86,6 +87,11 @@ function App() {
         <Route path="/teams" element={
           <ProtectedLayout>
             <Team />
+          </ProtectedLayout>
+        } />
+        <Route path="/teams/:id" element={
+          <ProtectedLayout>
+            <TeamDetails />
           </ProtectedLayout>
         } />
         <Route path="/reports" element={
