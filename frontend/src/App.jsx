@@ -22,6 +22,7 @@ import ProjectDetails from "./pages/ProjectDetails";
 import TaskDetails from "./pages/TaskDetails";
 import TeamDetails from "./pages/TeamDetails";
 import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated } = useAuthStore()
@@ -84,6 +85,11 @@ function App() {
         <Route path="/reports" element={
           <ProtectedLayout>
             <Reports />
+          </ProtectedLayout>
+        } />
+        <Route path="/settings" element={
+          <ProtectedLayout>
+            <Settings />
           </ProtectedLayout>
         } />
       </Routes>
