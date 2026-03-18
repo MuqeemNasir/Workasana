@@ -17,7 +17,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 
 import Projects from './pages/Projects';
-import Team from './pages/Team';
+import Teams from './pages/Teams';
 import ProjectDetails from "./pages/ProjectDetails";
 import TaskDetails from "./pages/TaskDetails";
 import TeamDetails from "./pages/TeamDetails";
@@ -74,7 +74,7 @@ function App() {
         } />
         <Route path="/teams" element={
           <ProtectedLayout>
-            <Team />
+            <Teams />
           </ProtectedLayout>
         } />
         <Route path="/teams/:id" element={

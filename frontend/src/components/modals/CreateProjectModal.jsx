@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import ModalWrapper from "../common/ModalWrapper";
 
 const CreateProjectModal = ({ onClose, onProjectCreated }) => {
   const [name, setName] = useState("");
@@ -25,75 +26,63 @@ const CreateProjectModal = ({ onClose, onProjectCreated }) => {
   };
 
   return (
-    <div
-      className="modal fade show d-block"
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content border-0 shadow-lg rounded-4">
-          <div className="modal-header border-0 pb-0">
-            <h5 className="modal-title fw-bold text-dark">New Project</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={onClose}
-            ></button>
-          </div>
-          <div className="modal-body p-4">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label
-                  className="form-label fw-bold text-muted small"
-                  style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}
-                >
-                  Project Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control bg-light border-0 py-2"
-                  placeholder="e.g. Website Redesign"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  autoFocus
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  className="form-label fw-bold text-muted small"
-                  style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}
-                >
-                  Description
-                </label>
-                <textarea
-                  className="form-control bg-light border-0"
-                  rows="3"
-                  placeholder="Briefly describe the project goals..."
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </div>
-
-              <div className="d-flex justify-content-end gap-2 mt-4">
-                <button
-                  type="button"
-                  className="btn btn-light text-muted fw-semibold"
-                  onClick={onClose}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary px-4 fw-semibold"
-                  disabled={loading}
-                >
-                  {loading ? "Creating..." : "Creating Project"}
-                </button>
-              </div>
-            </form>
-          </div>
+    <ModalWrapper title="New Project" onClose={onClose}>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="custom-label">Project Name</label>
+          <input
+            type="text"
+            className="form-control custom-input"
+            placeholder="e.g. Website Redesign"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            autoFocus
+          />
         </div>
-      </div>
-    </div>
+        <div className="mb-4">
+          <label className="custom-label">Description</label>
+          <textarea
+            className="form-control custom-input"
+            rows="3"
+            placeholder="Briefly describe the project goals..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+        </div>
+
+        <div className="d-flex justify-content-end gap-2 mt-5">
+          <button
+            type="button"
+            className="btn"
+            style={{
+              backgroundColor: "#9ca3af",
+              color: "white",
+              borderRadius: "4px",
+              fontSize: "0.85rem",
+              fontWeight: "500",
+            }}
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn px-4"
+            style={{
+              backgroundColor: "#4f46ef",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              fontSize: "0.85rem",
+              fontWeight: "500",
+            }}
+            disabled={loading}
+          >
+            {loading ? "..." : "Create"}
+          </button>
+        </div>
+      </form>
+    </ModalWrapper>
   );
 };
 
