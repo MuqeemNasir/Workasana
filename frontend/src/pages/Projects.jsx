@@ -90,24 +90,27 @@ const Projects = () => {
         </div>
         <div className="d-flex align-items-center gap-3 w-100 w-md-auto justify-content-md-end">
           <div className="w-100 w-md-auto">
-          <SearchBox
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+            <SearchBox
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
           <div className="d-none d-md-block">
-          <UserProfile />
+            <UserProfile />
           </div>
         </div>
       </div>
 
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 bg-white p-3 rounded-3 shadow-sm border">
-        <div className="overflow-auto pb-2 pb-md-0" style={{whiteSpace: 'nowrap'}}>
-        <FilterTabs
-          options={["In Progress", "Completed", "ToDo"]}
-          selected={filterStatus}
-          onSelect={setFilterStatus}
-        />
+        <div
+          className="overflow-auto pb-2 pb-md-0"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          <FilterTabs
+            options={["In Progress", "Completed", "ToDo", "Blocked"]}
+            selected={filterStatus}
+            onSelect={setFilterStatus}
+          />
         </div>
 
         <div className="d-flex align-items-center justify-content-between gap-3">

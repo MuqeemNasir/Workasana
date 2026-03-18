@@ -23,6 +23,7 @@ import TaskDetails from "./pages/TaskDetails";
 import TeamDetails from "./pages/TeamDetails";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import Tasks from "./pages/Tasks";
 
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated } = useAuthStore()
@@ -65,6 +66,11 @@ function App() {
         <Route path="/projects/:id" element={
           <ProtectedLayout>
             <ProjectDetails/>
+          </ProtectedLayout>
+        } />
+        <Route path="/tasks" element={
+          <ProtectedLayout>
+            <Tasks/>
           </ProtectedLayout>
         } />
         <Route path="/tasks/:id" element={

@@ -1,4 +1,4 @@
-import { FaChartPie, FaCog, FaFolder, FaSignOutAlt, FaThLarge, FaTimes, FaUsers } from "react-icons/fa"
+import { FaChartPie, FaCog, FaFolder, FaSignOutAlt, FaTasks, FaThLarge, FaTimes, FaUsers } from "react-icons/fa"
 import useAuthStore from "../stores/useAuthStore"
 import { NavLink } from "react-router-dom"
 
@@ -30,6 +30,11 @@ const Sidebar = ({isOpen, onClose}) => {
         <li>
           <NavLink to="/projects" className="sidebar-link" onClick={onClose}>
             <FaFolder className="me-3" /> Projects
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/tasks" className="sidebar-link" onClick={onClose}>
+            <FaTasks className="me-3" /> Tasks
           </NavLink>
         </li>
         <li>
