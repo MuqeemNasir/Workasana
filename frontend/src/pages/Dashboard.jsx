@@ -23,6 +23,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [searchTerm, setSearchTerm] = useState("")
   const [projectFilter, setProjectFilter] = useState("All");
   const [projectPage, setProjectPage] = useState(0);
   const [taskFilter, setTaskFilter] = useState("All");
@@ -54,8 +55,9 @@ const Dashboard = () => {
   }, [user]);
 
   const filteredProjects = projects.filter((p) => {
-    if (projectFilter === "All") return true;
-    return p.status === projectFilter;
+    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesStatus = projectFilter === 'All' || p.status === projectFilter
+    return matchesSearch && matchesStatus;
   });
 
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
@@ -66,16 +68,17 @@ const Dashboard = () => {
 
   useEffect(() => {
     setProjectPage(0);
-  }, [projectFilter]);
+  }, [projectFilter, searchTerm]);
 
   const handlePrevPage = () => setProjectPage((p) => Math.max(0, p - 1));
   const handleNextPage = () =>
     setProjectPage((p) => Math.min(totalPages - 1, p + 1));
 
-  const filteredTasks = tasks.filter((t) => {
-    if (taskFilter === "All") return true;
-    return t.status === taskFilter;
-  });
+    const filteredTasks = tasks.filter((t) => {
+      const matchesSearch = t.name.toLowerCase(searchTerm.toLowerCase()) || (t.project?.name || "").toLowerCase().includes(searchTerm.toLowerCase())
+      const matchesStatus = taskFilter === 'All' || t.status === taskFilter
+      return matchesSearch && matchesStatus
+    })
 
   if (loading)
     return (
@@ -95,7 +98,7 @@ const Dashboard = () => {
           </p>
         </div>
         <div className="d-flex align-items-center gap-3">
-          <SearchBox />
+          <SearchBox value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
           <UserProfile />
         </div>
       </div>
@@ -106,7 +109,7 @@ const Dashboard = () => {
           Hello, {user?.name?.split(" ")[0]} 👋
         </h3>
         <p className="text-muted small">Here is what's happening today.</p>
-        <SearchBox />
+        <SearchBox value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       </div>
 
         {/* =============== */}
